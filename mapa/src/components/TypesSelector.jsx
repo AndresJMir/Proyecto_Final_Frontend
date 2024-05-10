@@ -1,3 +1,4 @@
+// TypesSelector.jsx
 import React, { useState } from 'react';
 
 const TypesSelector = ({ types, onTypeSelect }) => {
