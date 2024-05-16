@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 import { useAuth } from '../auth/AuthContext';
 
 const LoginPage = () => {
@@ -36,7 +36,11 @@ const LoginPage = () => {
                     />
                 </div>
                 <button type="submit">Iniciar Sesión</button>
+                <button>
+                    <Link to="/register">Registrarse</Link>
+                </button>
             </form>
+
         </div>
     );
 };
