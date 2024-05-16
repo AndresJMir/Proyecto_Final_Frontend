@@ -1,20 +1,31 @@
 import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
 import Header from './assets/Header';
 import Main from './assets/Main';
-import Sidebar from './assets/Sidebar';
 import Footer from './assets/Footer';
+import LoginPage from './auth/login';
+import UserPage from './components/user';
+import { AuthProvider } from './auth/AuthContext';
 
 function App() {
   return (
-    <div className="App">
-      <Header />
-      <div style={{ display: 'flex' }}>
-        <Main />
-        <Sidebar />
-      </div>
-      <Footer />
-    </div>
+    <Router>
+      <AuthProvider>
+        <div className="App">
+          <Header />
+          <div style={{ display: 'flex' }}>
+            <Routes>
+              <Route path="/" element={<Main />} />
+              <Route path="/login" element={<LoginPage />} />
+              <Route path="/user" element={<UserPage />} />
+            </Routes>
+          </div>
+          <Footer />
+        </div>
+      </AuthProvider>
+    </Router>
   );
 }
+
 
 export default App;
