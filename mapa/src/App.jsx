@@ -6,6 +6,7 @@ import Footer from './assets/Footer';
 import LoginPage from './auth/login';
 import UserPage from './components/user';
 import { AuthProvider } from './auth/AuthContext';
+import RegisterPage from './auth/register';
 
 function App() {
   return (
@@ -17,6 +18,7 @@ function App() {
             <Routes>
               <Route path="/" element={<Main />} />
               <Route path="/login" element={<LoginPage />} />
+              <Route path="/register" element={<RegisterPage />} />
               <Route path="/user" element={<UserPage />} />
             </Routes>
           </div>

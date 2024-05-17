@@ -65,6 +65,32 @@ export const AuthProvider = ({ children }) => {
         }
     };
 
+    const register = async (name, email, password, navigate) => {
+        try {
+            const response = await fetch("http://localhost:8000/api/register", {
+                headers: {
+                    'Accept': 'application/json',
+                    'Content-Type': 'application/json',
+                },
+                method: "POST",
+                body: JSON.stringify({ name, email, password })
+            });
+            const data = await response.json();
+            if (data.success) {
+                const { authToken } = data;
+                setAuthToken(authToken);
+                localStorage.setItem('authToken', authToken);
+                setUser({ email });
+                setEmail(email);
+                navigate('/user');
+            } else {
+                console.error("Failed to register");
+            }
+        } catch (error) {
+            console.error("Error registering", error);
+        }
+    };
+
     const logout = async (navigate) => {
         try {
             const response = await fetch("http://localhost:8000/api/logout", {
@@ -91,7 +117,7 @@ export const AuthProvider = ({ children }) => {
     };
 
     return (
-        <AuthContext.Provider value={{ authToken, email, user, login, logout }}>
+        <AuthContext.Provider value={{ authToken, email, user, login, logout, register}}>
             {children}
         </AuthContext.Provider>
     );
